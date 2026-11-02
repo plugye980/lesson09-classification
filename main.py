@@ -54,11 +54,24 @@ n_cols = df.shape[1]
 n_stroke = int((df["stroke"] == 1).sum())
 ratio = n_stroke / total * 100 if total else 0
 
+st.markdown(
+    """
+    <style>
+    [data-testid="stMetric"] {
+        background-color: rgba(64, 120, 192, 0.12);
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("전체 사람 수", f"{total:,}명", border=True)
-c2.metric("열 개수", f"{n_cols}개", border=True)
-c3.metric("stroke가 1인 사람 수", f"{n_stroke:,}명", border=True)
-c4.metric("stroke가 1인 비율", f"{ratio:.1f}%", border=True)
+c1.metric("전체 사람 수", f"{total:,}명")
+c2.metric("열 개수", f"{n_cols}개")
+c3.metric("stroke가 1인 사람 수", f"{n_stroke:,}명")
+c4.metric("stroke가 1인 비율", f"{ratio:.1f}%")
 
 # 열 정보 표
 st.subheader("열 정보")
